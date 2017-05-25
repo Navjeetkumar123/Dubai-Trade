@@ -206,7 +206,7 @@ func (t *ManageVessel) getVessel_byOwner(stub shim.ChaincodeStubInterface, args 
 		json.Unmarshal(valueAsBytes, &valIndex)
 		//fmt.Print("valIndex: ")
 		//fmt.Print(valIndex)
-		if valIndex.ownerName == ownerName{
+		if valIndex.OwnerName == ownerName{
 			fmt.Println("Owner found")
 			jsonResp = jsonResp + "\""+ val + "\":" + string(valueAsBytes[:])
 			//fmt.Println("jsonResp inside if")
