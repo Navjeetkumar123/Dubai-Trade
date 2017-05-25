@@ -117,6 +117,8 @@ func (t *ManageVessel) Init(stub shim.ChaincodeStubInterface, function string, a
 		return t.delete_vessel(stub, args)
 	}else if function == "update_vessel" {									//update a Vessel
 		return t.update_vessel(stub, args)
+	}else if function == "update_vessel_allocationStatus" {									//update a Vessel
+		return t.update_vessel_allocationStatus(stub, args)
 	}
 	fmt.Println("invoke did not find func: " + function)					//error
 	return nil, errors.New("Received unknown function invocation")
