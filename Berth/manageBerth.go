@@ -122,6 +122,8 @@ func (t *ManageBerth) Init(stub shim.ChaincodeStubInterface, function string, ar
 		return t.delete_berth(stub, args)
 	}else if function == "update_berth" {									//update a Berth
 		return t.update_berth(stub, args)
+	}else if function == "update_berth_allocationStatus" {									//update a Berth
+		return t.update_berth_allocationStatus(stub, args)
 	}
 	fmt.Println("invoke did not find func: " + function)					//error
 	return nil, errors.New("Received unknown function invocation")
