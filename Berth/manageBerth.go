@@ -554,7 +554,7 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 	//fmt.Println(berthAsBytes);
 	res := Berth{}
 	json.Unmarshal(berthAsBytes, &res)
-	if res.BerthID == vesselID{
+	if res.VesselID == vesselID{
 		fmt.Println("Berth found with vesselID : " + vesselID)
 		//fmt.Println(res);
 		res.VesselName = args[1]
@@ -733,7 +733,7 @@ func (t *ManageBerth) update_berth_allocationStatus(stub shim.ChaincodeStubInter
 	//fmt.Println(berthAsBytes);
 	res := Berth{}
 	json.Unmarshal(berthAsBytes, &res)
-	if res.BerthID == vesselID{
+	if res.VesselID == vesselID{
 		fmt.Println("Berth found with vesselID : " + vesselID)
 		res.BerthBookingStatus = args[1]
 	}
