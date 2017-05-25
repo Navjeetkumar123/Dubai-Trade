@@ -25,7 +25,6 @@ import (
 	"fmt"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	"github.com/hyperledger/fabric/core/util"
-	"strconv"
 )
 
 type ManageAllocations struct {
@@ -194,15 +193,13 @@ func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, a
 	BerthChainCode := args[1]
 	VesselID := args[2]
 
-	// Json to create report
-	reportInJson := `{`
 
 	//-----------------------------------------------------------------------------
 
 	// Fetch Vessel details from Blockchain
-	f := "getVessel_byID"
-	queryArgs := util.ToChaincodeArgs(f, VesselID)
-	vesselAsBytes, err := stub.QueryChaincode(VesselChaincode, queryArgs)
+	f1 := "getVessel_byID"
+	queryArgs1 := util.ToChaincodeArgs(f1, VesselID)
+	vesselAsBytes, err := stub.QueryChaincode(VesselChaincode, queryArgs1)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to query chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
@@ -224,9 +221,9 @@ func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, a
 
 
 	// Fetch Berth details from Blockchain
-	f := "getBerth_byVesselID"
-	queryArgs := util.ToChaincodeArgs(f, VesselID)
-	berthAsBytes, err := stub.QueryChaincode(BerthChaincode, queryArgs)
+	f2 := "getBerth_byVesselID"
+	queryArgs2 := util.ToChaincodeArgs(f2, VesselID)
+	berthAsBytes, err := stub.QueryChaincode(BerthChainCode, queryArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to query chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
@@ -247,29 +244,29 @@ func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, a
 	}
 
 	// Update allocation status to "Allocation in progress"
-	function = "update_vessel_allocationStatus"
-	invokeArgs := util.ToChaincodeArgs(function, VesselID, "P")
-	result, err := stub.InvokeChaincode(VesselChaincode, invokeArgs)
+	f3 := "update_vessel_allocationStatus"
+	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "P")
+	result1, err := stub.InvokeChaincode(VesselChaincode, invokeArgs1)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Vessel' chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
 		return nil, errors.New(errStr)
 	}
 	fmt.Print("Transaction hash returned: ")
-	fmt.Println(result)
+	fmt.Println(result1)
 	fmt.Println("Successfully updated allocation status to 'In progress'")
 
 	// Update allocation status to "Allocation in progress"
-	function = "update_berth_allocationStatus"
-	invokeArgs := util.ToChaincodeArgs(function, VesselID, "P")
-	result, err := stub.InvokeChaincode(BerthChaincode, invokeArgs)
+	f4 := "update_berth_allocationStatus"
+	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "P")
+	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
 		return nil, errors.New(errStr)
 	}
 	fmt.Print("Transaction hash returned: ")
-	fmt.Println(result)
+	fmt.Println(result2)
 	fmt.Println("Successfully updated allocation status to 'In progress'")
 
 	fmt.Println("end start_allocation")
@@ -296,15 +293,13 @@ func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface,
 	BerthChainCode := args[1]
 	VesselID := args[2]
 
-	// Json to create report
-	reportInJson := `{`
 
 	//-----------------------------------------------------------------------------
 
 	// Fetch Vessel details from Blockchain
-	f := "getVessel_byID"
-	queryArgs := util.ToChaincodeArgs(f, VesselID)
-	vesselAsBytes, err := stub.QueryChaincode(VesselChaincode, queryArgs)
+	f1 := "getVessel_byID"
+	queryArgs1 := util.ToChaincodeArgs(f1, VesselID)
+	vesselAsBytes, err := stub.QueryChaincode(VesselChaincode, queryArgs1)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to query chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
@@ -326,9 +321,9 @@ func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface,
 
 
 	// Fetch Berth details from Blockchain
-	f := "getBerth_byVesselID"
-	queryArgs := util.ToChaincodeArgs(f, VesselID)
-	berthAsBytes, err := stub.QueryChaincode(BerthChaincode, queryArgs)
+	f2 := "getBerth_byVesselID"
+	queryArgs2 := util.ToChaincodeArgs(f2, VesselID)
+	berthAsBytes, err := stub.QueryChaincode(BerthChainCode, queryArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to query chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
@@ -349,29 +344,29 @@ func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface,
 	}
 
 	// Update allocation status to "Allocation in progress"
-	function = "update_vessel_allocationStatus"
-	invokeArgs := util.ToChaincodeArgs(function, VesselID, "A")
-	result, err := stub.InvokeChaincode(VesselChaincode, invokeArgs)
+	f3 := "update_vessel_allocationStatus"
+	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "A")
+	result1, err := stub.InvokeChaincode(VesselChaincode, invokeArgs1)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Vessel' chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
 		return nil, errors.New(errStr)
 	}
 	fmt.Print("Transaction hash returned: ")
-	fmt.Println(result)
+	fmt.Println(result1)
 	fmt.Println("Successfully updated allocation status to 'In progress'")
 
 	// Update allocation status to "Allocation in progress"
-	function = "update_berth_allocationStatus"
-	invokeArgs := util.ToChaincodeArgs(function, VesselID, "A")
-	result, err := stub.InvokeChaincode(BerthChaincode, invokeArgs)
+	f4 := "update_berth_allocationStatus"
+	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "A")
+	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
 		return nil, errors.New(errStr)
 	}
 	fmt.Print("Transaction hash returned: ")
-	fmt.Println(result)
+	fmt.Println(result2)
 	fmt.Println("Successfully updated allocation status to 'In progress'")
 
 	fmt.Println("end approve_allocation")
@@ -398,15 +393,14 @@ func (t *ManageAllocations) reject_allocation(stub shim.ChaincodeStubInterface, 
 	BerthChainCode := args[1]
 	VesselID := args[2]
 
-	// Json to create report
-	reportInJson := `{`
+
 
 	//-----------------------------------------------------------------------------
 
 	// Fetch Vessel details from Blockchain
-	f := "getVessel_byID"
-	queryArgs := util.ToChaincodeArgs(f, VesselID)
-	vesselAsBytes, err := stub.QueryChaincode(VesselChaincode, queryArgs)
+	f1 := "getVessel_byID"
+	queryArgs1 := util.ToChaincodeArgs(f1, VesselID)
+	vesselAsBytes, err := stub.QueryChaincode(VesselChaincode, queryArgs1)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to query chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
@@ -428,9 +422,9 @@ func (t *ManageAllocations) reject_allocation(stub shim.ChaincodeStubInterface, 
 
 
 	// Fetch Berth details from Blockchain
-	f := "getBerth_byVesselID"
-	queryArgs := util.ToChaincodeArgs(f, VesselID)
-	berthAsBytes, err := stub.QueryChaincode(BerthChaincode, queryArgs)
+	f2 := "getBerth_byVesselID"
+	queryArgs2 := util.ToChaincodeArgs(f2, VesselID)
+	berthAsBytes, err := stub.QueryChaincode(BerthChainCode, queryArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to query chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
@@ -451,29 +445,29 @@ func (t *ManageAllocations) reject_allocation(stub shim.ChaincodeStubInterface, 
 	}
 
 	// Update allocation status to "Allocation in progress"
-	function = "update_vessel_allocationStatus"
-	invokeArgs := util.ToChaincodeArgs(function, VesselID, "R")
-	result, err := stub.InvokeChaincode(VesselChaincode, invokeArgs)
+	f3 := "update_vessel_allocationStatus"
+	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "R")
+	result1, err := stub.InvokeChaincode(VesselChaincode, invokeArgs1)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Vessel' chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
 		return nil, errors.New(errStr)
 	}
 	fmt.Print("Transaction hash returned: ")
-	fmt.Println(result)
+	fmt.Println(result1)
 	fmt.Println("Successfully updated allocation status to 'In progress'")
 
 	// Update allocation status to "Allocation in progress"
-	function = "update_berth_allocationStatus"
-	invokeArgs := util.ToChaincodeArgs(function, VesselID, "R")
-	result, err := stub.InvokeChaincode(BerthChaincode, invokeArgs)
+	f4 := "update_berth_allocationStatus"
+	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "R")
+	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
 		fmt.Printf(errStr)
 		return nil, errors.New(errStr)
 	}
 	fmt.Print("Transaction hash returned: ")
-	fmt.Println(result)
+	fmt.Println(result2)
 	fmt.Println("Successfully updated allocation status to 'In progress'")
 
 	fmt.Println("end approve_allocation")
