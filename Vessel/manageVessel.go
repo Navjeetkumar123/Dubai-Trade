@@ -492,7 +492,7 @@ func (t *ManageVessel) update_vessel_allocationStatus(stub shim.ChaincodeStubInt
 	var jsonResp string
 	var err error
 	fmt.Println("start update_vessel_allocationStatus")
-	if len(args) != 1 {
+	if len(args) != 2 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 2.")
 	}
 	// set vesselID
