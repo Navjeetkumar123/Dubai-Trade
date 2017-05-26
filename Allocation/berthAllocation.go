@@ -136,6 +136,8 @@ func (t *ManageAllocations) Invoke(stub shim.ChaincodeStubInterface, function st
 	// Handle different functions
 	if function == "init" { // Initialize the chaincode state, used as reset
 		return t.Init(stub, "init", args)
+	} else if function == "cancel_booking" { // Secondary Fire when Longbox account is updated
+		return t.cancel_booking(stub, args)
 	} else if function == "berth_allocation" { // Create a new Allocation
 		return t.berth_allocation(stub, args)
 	} else if function == "approve_allocation" { // Secondary Fire when Longbox account is updated
@@ -259,6 +261,107 @@ func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, a
 	// Update allocation status to "Allocation in progress"
 	f4 := "update_berth_allocationStatus"
 	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "P")
+	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
+	if err != nil {
+		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
+		fmt.Printf(errStr)
+		return nil, errors.New(errStr)
+	}
+	fmt.Print("Transaction hash returned: ")
+	fmt.Println(result2)
+	fmt.Println("Successfully updated allocation status to 'In progress'")
+
+	fmt.Println("end start_allocation")
+	return nil, nil
+}
+
+
+// ============================================================================================================================
+// Cancel Booking - create a new Allocation, store into chaincode state
+// ============================================================================================================================
+func (t *ManageAllocations) cancel_booking(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
+	var err error
+	if len(args) != 3 {
+		errMsg := "{ \"message\" : \"Incorrect number of arguments. Expecting 3\", \"code\" : \"503\"}"
+		err = stub.SetEvent("errEvent", []byte(errMsg))
+		if err != nil {
+			return nil, err
+		}
+		return nil, nil
+	}
+	fmt.Println("start start_allocation")
+
+	// Alloting Params
+	VesselChaincode := args[0]
+	BerthChainCode := args[1]
+	VesselID := args[2]
+
+
+	//-----------------------------------------------------------------------------
+
+	// Fetch Vessel details from Blockchain
+	f1 := "getVessel_byID"
+	queryArgs1 := util.ToChaincodeArgs(f1, VesselID)
+	vesselAsBytes, err := stub.QueryChaincode(VesselChaincode, queryArgs1)
+	if err != nil {
+		errStr := fmt.Sprintf("Failed to query chaincode. Got error: %s", err.Error())
+		fmt.Printf(errStr)
+		return nil, errors.New(errStr)
+	}
+	VesselData := Vessel{}
+	json.Unmarshal(vesselAsBytes, &VesselData)
+	fmt.Println(VesselData)
+	if VesselData.VesselID == VesselID {
+		fmt.Println("Vessel found with VesselID : " + VesselID)
+	} else {
+		errMsg := "{ \"message\" : \"" + VesselID + " Not Found.\", \"code\" : \"503\"}"
+		err = stub.SetEvent("errEvent", []byte(errMsg))
+		if err != nil {
+			return nil, err
+		}
+		return nil, nil
+	}
+
+
+	// Fetch Berth details from Blockchain
+	f2 := "getBerth_byVesselID"
+	queryArgs2 := util.ToChaincodeArgs(f2, VesselID)
+	berthAsBytes, err := stub.QueryChaincode(BerthChainCode, queryArgs2)
+	if err != nil {
+		errStr := fmt.Sprintf("Failed to query chaincode. Got error: %s", err.Error())
+		fmt.Printf(errStr)
+		return nil, errors.New(errStr)
+	}
+	BerthData := Berth{}
+	json.Unmarshal(berthAsBytes, &BerthData)
+	fmt.Println(BerthData)
+	if BerthData.VesselID == VesselID {
+		fmt.Println("Berth found with VesselID : " + VesselID)
+	} else {
+		errMsg := "{ \"message\" : \"" + VesselID + " Not Found.\", \"code\" : \"503\"}"
+		err = stub.SetEvent("errEvent", []byte(errMsg))
+		if err != nil {
+			return nil, err
+		}
+		return nil, nil
+	}
+
+	// Update allocation status to "Allocation in progress"
+	f3 := "update_vessel_allocationStatus"
+	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "C")
+	result1, err := stub.InvokeChaincode(VesselChaincode, invokeArgs1)
+	if err != nil {
+		errStr := fmt.Sprintf("Failed to update Transaction status from 'Vessel' chaincode. Got error: %s", err.Error())
+		fmt.Printf(errStr)
+		return nil, errors.New(errStr)
+	}
+	fmt.Print("Transaction hash returned: ")
+	fmt.Println(result1)
+	fmt.Println("Successfully updated allocation status to 'In progress'")
+
+	// Update allocation status to "Allocation in progress"
+	f4 := "update_berth_allocationStatus"
+	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "C")
 	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
