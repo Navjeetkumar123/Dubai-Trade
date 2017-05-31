@@ -181,12 +181,7 @@ func (t *ManageAllocations) Query(stub shim.ChaincodeStubInterface, function str
 func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
 	if len(args) != 3 {
-		errMsg := "{ \"message\" : \"Incorrect number of arguments. Expecting 3\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Incorrect number of arguments. Expecting 3 args")
 	}
 	fmt.Println("start start_allocation")
 
@@ -213,12 +208,7 @@ func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, a
 	if VesselData.VesselID == VesselID {
 		fmt.Println("Vessel found with VesselID : " + VesselID)
 	} else {
-		errMsg := "{ \"message\" : \"" + VesselID + " Not Found.\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Vessel ID not found")
 	}
 
 
@@ -237,12 +227,7 @@ func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, a
 	if BerthData.VesselID == VesselID {
 		fmt.Println("Berth found with VesselID : " + VesselID)
 	} else {
-		errMsg := "{ \"message\" : \"" + VesselID + " Not Found.\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Vessel ID not found")
 	}
 
 	// Update allocation status to "Allocation in progress"
@@ -282,12 +267,7 @@ func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, a
 func (t *ManageAllocations) cancel_booking(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
 	if len(args) != 3 {
-		errMsg := "{ \"message\" : \"Incorrect number of arguments. Expecting 3\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Incorrect number of arguments. Expecting 3 args")
 	}
 	fmt.Println("start start_allocation")
 
@@ -314,12 +294,7 @@ func (t *ManageAllocations) cancel_booking(stub shim.ChaincodeStubInterface, arg
 	if VesselData.VesselID == VesselID {
 		fmt.Println("Vessel found with VesselID : " + VesselID)
 	} else {
-		errMsg := "{ \"message\" : \"" + VesselID + " Not Found.\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Vessel ID not found")
 	}
 
 
@@ -338,12 +313,7 @@ func (t *ManageAllocations) cancel_booking(stub shim.ChaincodeStubInterface, arg
 	if BerthData.VesselID == VesselID {
 		fmt.Println("Berth found with VesselID : " + VesselID)
 	} else {
-		errMsg := "{ \"message\" : \"" + VesselID + " Not Found.\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Vessel ID not found")
 	}
 
 	// Update allocation status to "Allocation in progress"
@@ -382,12 +352,7 @@ func (t *ManageAllocations) cancel_booking(stub shim.ChaincodeStubInterface, arg
 func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
 	if len(args) != 3 {
-		errMsg := "{ \"message\" : \"Incorrect number of arguments. Expecting 3\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Incorrect number of arguments. Expecting 3 args")
 	}
 	fmt.Println("start approve_allocation")
 
@@ -414,12 +379,7 @@ func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface,
 	if VesselData.VesselID == VesselID {
 		fmt.Println("Vessel found with VesselID : " + VesselID)
 	} else {
-		errMsg := "{ \"message\" : \"" + VesselID + " Not Found.\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Vessel ID not found")
 	}
 
 
@@ -438,12 +398,7 @@ func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface,
 	if BerthData.VesselID == VesselID {
 		fmt.Println("Berth found with VesselID : " + VesselID)
 	} else {
-		errMsg := "{ \"message\" : \"" + VesselID + " Not Found.\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Vessel ID not found")
 	}
 
 	// Update allocation status to "Allocation in progress"
@@ -482,12 +437,7 @@ func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface,
 func (t *ManageAllocations) reject_allocation(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
 	if len(args) != 3 {
-		errMsg := "{ \"message\" : \"Incorrect number of arguments. Expecting 3\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Incorrect number of arguments. Expecting 3 args")
 	}
 	fmt.Println("start approve_allocation")
 
@@ -515,12 +465,7 @@ func (t *ManageAllocations) reject_allocation(stub shim.ChaincodeStubInterface, 
 	if VesselData.VesselID == VesselID {
 		fmt.Println("Vessel found with VesselID : " + VesselID)
 	} else {
-		errMsg := "{ \"message\" : \"" + VesselID + " Not Found.\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Vessel ID not found")
 	}
 
 
@@ -539,12 +484,7 @@ func (t *ManageAllocations) reject_allocation(stub shim.ChaincodeStubInterface, 
 	if BerthData.VesselID == VesselID {
 		fmt.Println("Berth found with VesselID : " + VesselID)
 	} else {
-		errMsg := "{ \"message\" : \"" + VesselID + " Not Found.\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		}
-		return nil, nil
+		return nil, errors.New("Vessel ID not found")
 	}
 
 	// Update allocation status to "Allocation in progress"
