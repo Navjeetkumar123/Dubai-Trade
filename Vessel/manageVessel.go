@@ -174,12 +174,7 @@ func (t *ManageVessel) getVessel_byOwner(stub shim.ChaincodeStubInterface, args 
 	fmt.Println("start getVessel_byTO")
 	var err error
 	if len(args) != 1 {
-		errMsg := "{ \"message\" : \"Incorrect number of arguments. Expecting 'ownerName' as an argument\", \"code\" : \"503\"}"
-		err = stub.SetEvent("errEvent", []byte(errMsg))
-		if err != nil {
-			return nil, err
-		} 
-		return nil, nil
+		return nil, errors.New("Incorrect number of arguments. Expecting owner name")
 	}
 	// set buyer's name
 	ownerName = args[0]
@@ -216,13 +211,6 @@ func (t *ManageVessel) getVessel_byOwner(stub shim.ChaincodeStubInterface, args 
 			if i < len(vesselIndex)-1 {
 				jsonResp = jsonResp + ","
 			}
-		} else{
-			errMsg := "{ \"message\" : \""+ ownerName+ " Not Found.\", \"code\" : \"503\"}"
-			err = stub.SetEvent("errEvent", []byte(errMsg))
-			if err != nil {
-				return nil, err
-			} 
-			return nil, nil
 		}
 		
 	}
