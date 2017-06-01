@@ -168,7 +168,7 @@ func (t *ManageVessel) getVessel_byID(stub shim.ChaincodeStubInterface, args []s
 // ============================================================================================================================
 
 func (t *ManageVessel) getVessel_byOwner(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
-	var jsonResp, ownerName, errResp string
+	var jsonResp, ownerPhoneNumber, errResp string
 	var vesselIndex []string
 	var valIndex Vessel
 	fmt.Println("start getVessel_byOwner")
