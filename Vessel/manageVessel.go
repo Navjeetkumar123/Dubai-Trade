@@ -276,10 +276,6 @@ func (t *ManageVessel) delete_vessel(stub shim.ChaincodeStubInterface, args []st
 	}
 	// set vesselID
 	vesselID := args[0]
-	err := stub.DelState(vesselID)													//remove the Vessel from chaincode
-	if err != nil {
-		return nil, errors.New("Failed to delete state")
-	}
 
 	//get the Vessel index
 	vesselAsBytes, err := stub.GetState(VesselIndexStr)
