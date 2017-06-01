@@ -171,13 +171,13 @@ func (t *ManageVessel) getVessel_byOwner(stub shim.ChaincodeStubInterface, args 
 	var jsonResp, ownerName, errResp string
 	var vesselIndex []string
 	var valIndex Vessel
-	fmt.Println("start getVessel_byTO")
+	fmt.Println("start getVessel_byOwner")
 	var err error
 	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of arguments. Expecting owner name")
 	}
 	// set buyer's name
-	ownerName = args[0]
+	ownerPhoneNumber = args[0]
 	//fmt.Println("buyerName" + buyerName)
 	vesselAsBytes, err := stub.GetState(VesselIndexStr)
 	if err != nil {
@@ -203,7 +203,7 @@ func (t *ManageVessel) getVessel_byOwner(stub shim.ChaincodeStubInterface, args 
 		json.Unmarshal(valueAsBytes, &valIndex)
 		//fmt.Print("valIndex: ")
 		//fmt.Print(valIndex)
-		if valIndex.OwnerName == ownerName{
+		if valIndex.OwnerPhoneNumber == ownerPhoneNumber{
 			fmt.Println("Owner found")
 			jsonResp = jsonResp + "\""+ val + "\":" + string(valueAsBytes[:])
 			//fmt.Println("jsonResp inside if")
