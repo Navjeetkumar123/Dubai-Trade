@@ -245,7 +245,7 @@ func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, a
 
 	// Update allocation status to "Allocation in progress"
 	f4 := "update_berth_allocationStatus"
-	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "P", "")
+	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "P", " ")
 	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
@@ -331,7 +331,7 @@ func (t *ManageAllocations) cancel_booking(stub shim.ChaincodeStubInterface, arg
 
 	// Update allocation status to "Allocation in progress"
 	f4 := "update_berth_allocationStatus"
-	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "C", "")
+	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "C", " ")
 	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
@@ -351,8 +351,8 @@ func (t *ManageAllocations) cancel_booking(stub shim.ChaincodeStubInterface, arg
 // ============================================================================================================================
 func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
-	if len(args) != 3 {
-		return nil, errors.New("Incorrect number of arguments. Expecting 3 args")
+	if len(args) != 4 {
+		return nil, errors.New("Incorrect number of arguments. Expecting 4 args")
 	}
 	fmt.Println("start approve_allocation")
 
@@ -436,8 +436,8 @@ func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface,
 // ============================================================================================================================
 func (t *ManageAllocations) reject_allocation(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
-	if len(args) != 3 {
-		return nil, errors.New("Incorrect number of arguments. Expecting 3 args")
+	if len(args) != 4 {
+		return nil, errors.New("Incorrect number of arguments. Expecting 4 args")
 	}
 	fmt.Println("start approve_allocation")
 
