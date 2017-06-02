@@ -674,7 +674,7 @@ func (t *ManageBerth) update_berth_allocationStatus(stub shim.ChaincodeStubInter
 	var err error
 	fmt.Println("start update_berth_allocationStatus")
 	if len(args) != 3 {
-		return nil, errors.New("Incorrect number of arguments. Expecting 2.")
+		return nil, errors.New("Incorrect number of arguments. Expecting 3.")
 	}
 	// set vesselID
 	vesselID := args[0]
