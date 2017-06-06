@@ -522,7 +522,7 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 		res.ArriveFrom = args[9]
 		res.Terminal = args[10]
 		res.Remarks = args[11]
-		res.BerthBookingStatus = "N"
+		res.BerthBookingStatus = "New"
 		res.RotationNumber = args[12]
 		res.TOID = args[13]
 		res.ApproverID = args[14]
@@ -583,7 +583,7 @@ func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []stri
 	ArriveFrom := args[9]
 	Terminal := args[10]
 	Remarks := args[11]
-	BerthBookingStatus := "N"
+	BerthBookingStatus := "New"
 	RotationNumber := args[12]
 	TOID := args[13]
 	ApproverID := args[14]
