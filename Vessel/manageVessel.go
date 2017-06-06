@@ -343,7 +343,7 @@ func (t *ManageVessel) update_vessel(stub shim.ChaincodeStubInterface, args []st
 		res.OwnerPostCode = args[13]
 		res.OwnerCountry = args[14]
 		res.VesselClass = args[15]
-		res.BerthBookingStatus = "N"
+		res.BerthBookingStatus = "New"
 	}
 	
 	//build the Vessel json string manually
@@ -398,7 +398,7 @@ func (t *ManageVessel) create_vessel(stub shim.ChaincodeStubInterface, args []st
 	OwnerPostCode := args[13]
 	OwnerCountry := args[14]
 	VesselClass := args[15]
-	BerthBookingStatus := "N"
+	BerthBookingStatus := "New"
 	
 	vesselAsBytes, err := stub.GetState(VesselID)
 	if err != nil {
