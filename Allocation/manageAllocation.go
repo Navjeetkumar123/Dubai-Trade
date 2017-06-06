@@ -232,7 +232,7 @@ func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, a
 
 	// Update allocation status to "Allocation in progress"
 	f3 := "update_vessel_allocationStatus"
-	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "P")
+	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "In Progress")
 	result1, err := stub.InvokeChaincode(VesselChaincode, invokeArgs1)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Vessel' chaincode. Got error: %s", err.Error())
@@ -245,7 +245,7 @@ func (t *ManageAllocations) berth_allocation(stub shim.ChaincodeStubInterface, a
 
 	// Update allocation status to "Allocation in progress"
 	f4 := "update_berth_allocationStatus"
-	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "P", " ")
+	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "In Progress", " ")
 	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
@@ -318,7 +318,7 @@ func (t *ManageAllocations) cancel_booking(stub shim.ChaincodeStubInterface, arg
 
 	// Update allocation status to "Allocation in progress"
 	f3 := "update_vessel_allocationStatus"
-	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "C")
+	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "Cancelled")
 	result1, err := stub.InvokeChaincode(VesselChaincode, invokeArgs1)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Vessel' chaincode. Got error: %s", err.Error())
@@ -331,7 +331,7 @@ func (t *ManageAllocations) cancel_booking(stub shim.ChaincodeStubInterface, arg
 
 	// Update allocation status to "Allocation in progress"
 	f4 := "update_berth_allocationStatus"
-	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "C", " ")
+	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "Cancelled", " ")
 	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
@@ -403,7 +403,7 @@ func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface,
 
 	// Update allocation status to "Allocation in progress"
 	f3 := "update_vessel_allocationStatus"
-	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "A")
+	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "Approved")
 	result1, err := stub.InvokeChaincode(VesselChaincode, invokeArgs1)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Vessel' chaincode. Got error: %s", err.Error())
@@ -416,7 +416,7 @@ func (t *ManageAllocations) approve_allocation(stub shim.ChaincodeStubInterface,
 
 	// Update allocation status to "Allocation in progress"
 	f4 := "update_berth_allocationStatus"
-	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "A", ApproverID)
+	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "Approved", ApproverID)
 	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
@@ -489,7 +489,7 @@ func (t *ManageAllocations) reject_allocation(stub shim.ChaincodeStubInterface, 
 
 	// Update allocation status to "Allocation in progress"
 	f3 := "update_vessel_allocationStatus"
-	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "R")
+	invokeArgs1 := util.ToChaincodeArgs(f3, VesselID, "Rejected")
 	result1, err := stub.InvokeChaincode(VesselChaincode, invokeArgs1)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Vessel' chaincode. Got error: %s", err.Error())
@@ -502,7 +502,7 @@ func (t *ManageAllocations) reject_allocation(stub shim.ChaincodeStubInterface, 
 
 	// Update allocation status to "Allocation in progress"
 	f4 := "update_berth_allocationStatus"
-	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "R", ApproverID)
+	invokeArgs2 := util.ToChaincodeArgs(f4, VesselID, "Rejected", ApproverID)
 	result2, err := stub.InvokeChaincode(BerthChainCode, invokeArgs2)
 	if err != nil {
 		errStr := fmt.Sprintf("Failed to update Transaction status from 'Berth' chaincode. Got error: %s", err.Error())
