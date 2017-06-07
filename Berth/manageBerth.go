@@ -199,6 +199,7 @@ func (t *ManageBerth) getBerth_byTO(stub shim.ChaincodeStubInterface, args []str
 	//fmt.Println(poIndex)
 	//fmt.Println("len(poIndex) : ")
 	//fmt.Println(len(poIndex))
+	count := 0
 	jsonResp = "{"
 	for i,val := range berthIndex{
 		fmt.Println(strconv.Itoa(i) + " - looking at " + val + " for getBerth_byTO")
@@ -213,14 +214,14 @@ func (t *ManageBerth) getBerth_byTO(stub shim.ChaincodeStubInterface, args []str
 		//fmt.Print("valIndex: ")
 		//fmt.Print(valIndex)
 		if valIndex.TOID == toID{
-			if i > 0 {
+			if count > 0 {
 				jsonResp = jsonResp + ","
 			}
 			fmt.Println("TO found")
 			jsonResp = jsonResp + "\""+ val + "\":" + string(valueAsBytes[:])
 			//fmt.Println("jsonResp inside if")
 			//fmt.Println(jsonResp)
-			
+			count++
 		}
 		
 	}
