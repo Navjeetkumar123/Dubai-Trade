@@ -213,13 +213,14 @@ func (t *ManageBerth) getBerth_byTO(stub shim.ChaincodeStubInterface, args []str
 		//fmt.Print("valIndex: ")
 		//fmt.Print(valIndex)
 		if valIndex.TOID == toID{
+			if i > 0 {
+				jsonResp = jsonResp + ","
+			}
 			fmt.Println("TO found")
 			jsonResp = jsonResp + "\""+ val + "\":" + string(valueAsBytes[:])
 			//fmt.Println("jsonResp inside if")
 			//fmt.Println(jsonResp)
-			if i < len(berthIndex)-1 {
-				jsonResp = jsonResp + ","
-			}
+			
 		}
 		
 	}
