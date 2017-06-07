@@ -258,6 +258,7 @@ func (t *ManageBerth) getBerth_byOwner(stub shim.ChaincodeStubInterface, args []
 	//fmt.Println(poIndex)
 	//fmt.Println("len(poIndex) : ")
 	//fmt.Println(len(poIndex))
+	count := 0
 	jsonResp = "{"
 	for i,val := range berthIndex{
 		fmt.Println(strconv.Itoa(i) + " - looking at " + val + " for getBerth_byOwner")
@@ -272,13 +273,14 @@ func (t *ManageBerth) getBerth_byOwner(stub shim.ChaincodeStubInterface, args []
 		//fmt.Print("valIndex: ")
 		//fmt.Print(valIndex)
 		if valIndex.OwnerName == ownerName{
+			if count > 0 {
+				jsonResp = jsonResp + ","
+			}
 			fmt.Println("ownerName found")
 			jsonResp = jsonResp + "\""+ val + "\":" + string(valueAsBytes[:])
 			//fmt.Println("jsonResp inside if")
 			//fmt.Println(jsonResp)
-			if i < len(berthIndex)-1 {
-				jsonResp = jsonResp + ","
-			}
+			count++
 		}
 		
 	}
@@ -315,6 +317,7 @@ func (t *ManageBerth) getBerth_bySA(stub shim.ChaincodeStubInterface, args []str
 	//fmt.Println(poIndex)
 	//fmt.Println("len(poIndex) : ")
 	//fmt.Println(len(poIndex))
+	count := 0
 	jsonResp = "{"
 	for i,val := range berthIndex{
 		fmt.Println(strconv.Itoa(i) + " - looking at " + val + " for getBerth_bySA")
@@ -329,13 +332,14 @@ func (t *ManageBerth) getBerth_bySA(stub shim.ChaincodeStubInterface, args []str
 		//fmt.Print("valIndex: ")
 		//fmt.Print(valIndex)
 		if valIndex.AgentRefNumber == agentRefNumber{
+			if count > 0 {
+				jsonResp = jsonResp + ","
+			}
 			fmt.Println("agentRefNumber found")
 			jsonResp = jsonResp + "\""+ val + "\":" + string(valueAsBytes[:])
 			//fmt.Println("jsonResp inside if")
 			//fmt.Println(jsonResp)
-			if i < len(berthIndex)-1 {
-				jsonResp = jsonResp + ","
-			}
+			count++
 		}
 		
 	}
@@ -372,6 +376,7 @@ func (t *ManageBerth) getBerth_byPA(stub shim.ChaincodeStubInterface, args []str
 	//fmt.Println(poIndex)
 	//fmt.Println("len(poIndex) : ")
 	//fmt.Println(len(poIndex))
+	count := 0
 	jsonResp = "{"
 	for i,val := range berthIndex{
 		fmt.Println(strconv.Itoa(i) + " - looking at " + val + " for getBerth_byPA")
@@ -386,13 +391,14 @@ func (t *ManageBerth) getBerth_byPA(stub shim.ChaincodeStubInterface, args []str
 		//fmt.Print("valIndex: ")
 		//fmt.Print(valIndex)
 		if valIndex.ApproverID == approverID{
+			if count > 0 {
+				jsonResp = jsonResp + ","
+			}
 			fmt.Println("approverID found")
 			jsonResp = jsonResp + "\""+ val + "\":" + string(valueAsBytes[:])
 			//fmt.Println("jsonResp inside if")
 			//fmt.Println(jsonResp)
-			if i < len(berthIndex)-1 {
-				jsonResp = jsonResp + ","
-			}
+			count++
 		} 
 		
 	}
