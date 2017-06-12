@@ -57,6 +57,9 @@ type Berth struct{							// Attributes of a Berth
 	PortOfRegisteration string `json:"portOfRegisteration"`
 	OwnerName string `json:"ownerName"`
 	OwnerPhoneNumber string `json:"ownerPhoneNumber"`
+	PreferredBerth string `json:"preferredBerth"`
+	AllocatedBerth string `json:"allocatedBerth"`
+	
 }
 
 
@@ -599,6 +602,8 @@ func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []stri
 	PortOfRegisteration := args[16]
 	OwnerName := args[17]
 	OwnerPhoneNumber := args[18]
+	PreferredBerth := args[19]
+	AllocatedBerth := args[20]
 	
 	berthAsBytes, err := stub.GetState(VesselID)
 	if err != nil {
@@ -637,6 +642,8 @@ func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []stri
 		`"mmsiNumber": "` + MMSInumber + `" , `+ 
 		`"portOfRegisteration": "` + PortOfRegisteration + `" , `+ 
 		`"ownerName": "` + OwnerName + `" , `+ 
+		`"preferredBerth": "` + PreferredBerth + `" , `+
+		`"allocatedBerth": "` + AllocatedBerth + `" , `+
 		`"ownerPhoneNumber": "` + OwnerPhoneNumber + `" `+ 
 		`}`
 
@@ -722,6 +729,8 @@ func (t *ManageBerth) update_berth_allocationStatus(stub shim.ChaincodeStubInter
 		`"mmsiNumber": "` + res.MMSInumber + `" , `+ 
 		`"portOfRegisteration": "` + res.PortOfRegisteration + `" , `+ 
 		`"ownerName": "` + res.OwnerName + `" , `+ 
+		`"preferredBerth": "` + PreferredBerth + `" , `+
+		`"allocatedBerth": "` + AllocatedBerth + `" , `+
 		`"ownerPhoneNumber": "` + res.OwnerPhoneNumber + `" `+ 
 		`}`
 	err = stub.PutState(vesselID, []byte(berthDetails))									//store Berth with id as key
