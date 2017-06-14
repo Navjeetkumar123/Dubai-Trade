@@ -564,7 +564,7 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 		`"mmsiNumber": "` + res.MMSInumber + `" , `+ 
 		`"portOfRegisteration": "` + res.PortOfRegisteration + `" , `+ 
 		`"ownerName": "` + res.OwnerName + `" , `+ 
-		`"ownerPhoneNumber": "` + res.OwnerPhoneNumber + `" `+ 
+		`"ownerPhoneNumber": "` + res.OwnerPhoneNumber + `" , `+ 
 		`"preferredBerth": "` + res.PreferredBerth + `" , `+ 
 		`"allocatedBerth": "` + res.AllocatedBerth + `" `+ 
 		`}`
@@ -646,8 +646,8 @@ func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []stri
 		`"ownerName": "` + OwnerName + `" , `+ 
 		`"preferredBerth": "` + PreferredBerth + `" , `+
 		`"allocatedBerth": "` + AllocatedBerth + `" , `+
-		`"ownerPhoneNumber": "` + OwnerPhoneNumber + `" `+ 
-		`"preferredBerth": "` + PreferredBerth + `" `+ 
+		`"ownerPhoneNumber": "` + OwnerPhoneNumber + `" , `+ 
+		`"preferredBerth": "` + PreferredBerth + `" , `+ 
 		`"allocatedBerth": "` + AllocatedBerth + `" `+ 
 		`}`
 
@@ -733,7 +733,7 @@ func (t *ManageBerth) update_berth_allocationStatus(stub shim.ChaincodeStubInter
 		`"mmsiNumber": "` + res.MMSInumber + `" , `+ 
 		`"portOfRegisteration": "` + res.PortOfRegisteration + `" , `+ 
 		`"ownerName": "` + res.OwnerName + `" , `+ 
-		`"ownerPhoneNumber": "` + res.OwnerPhoneNumber + `" `+ 
+		`"ownerPhoneNumber": "` + res.OwnerPhoneNumber + `" , `+ 
 		`"preferredBerth": "` + res.PreferredBerth + `" , `+ 
 		`"allocatedBerth": "` + res.AllocatedBerth + `" `+
 		
