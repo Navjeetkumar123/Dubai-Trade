@@ -6,9 +6,7 @@ regarding copyright ownership.  The ASF licenses this file
 to you under the Apache License, Version 2.0 (the
 "License"); you may not use this file except in compliance
 with the License.  You may obtain a copy of the License at
-
   http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing,
 software distributed under the License is distributed on an
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -567,8 +565,8 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 		`"portOfRegisteration": "` + res.PortOfRegisteration + `" , `+ 
 		`"ownerName": "` + res.OwnerName + `" , `+ 
 		`"ownerPhoneNumber": "` + res.OwnerPhoneNumber + `" `+ 
-		`"PreferredBerth": "` + res.preferredBerth + `" , `+ 
-		`"AllocatedBerth": "` + res.allocatedBerth + `" `+ 
+		`"preferredBerth": "` + res.PreferredBerth + `" , `+ 
+		`"allocatedBerth": "` + res.AllocatedBerth + `" `+ 
 		`}`
 	err = stub.PutState(vesselID, []byte(berthDetails))									//store Berth with id as key
 	if err != nil {
@@ -735,11 +733,10 @@ func (t *ManageBerth) update_berth_allocationStatus(stub shim.ChaincodeStubInter
 		`"mmsiNumber": "` + res.MMSInumber + `" , `+ 
 		`"portOfRegisteration": "` + res.PortOfRegisteration + `" , `+ 
 		`"ownerName": "` + res.OwnerName + `" , `+ 
-		`"preferredBerth": "` + PreferredBerth + `" , `+
-		`"allocatedBerth": "` + AllocatedBerth + `" , `+
 		`"ownerPhoneNumber": "` + res.OwnerPhoneNumber + `" `+ 
-		`"preferredBerth": "` + PreferredBerth + `" `+ 
-		`"allocatedBerth": "` + AllocatedBerth + `" `+ 
+		`"preferredBerth": "` + res.PreferredBerth + `" , `+ 
+		`"allocatedBerth": "` + res.AllocatedBerth + `" `+
+		
 		`}`
 	err = stub.PutState(vesselID, []byte(berthDetails))									//store Berth with id as key
 	if err != nil {
