@@ -51,6 +51,8 @@ type Berth struct{							// Attributes of a Berth
 	PortOfRegisteration string `json:"portOfRegisteration"`
 	OwnerName string `json:"ownerName"`
 	OwnerPhoneNumber string `json:"ownerPhoneNumber"`
+	PreferredBerth string `json:"preferredBerth"`
+	AllocatedBerth string `json:"allocatedBerth"`
 }
 
 type Vessel struct{							// Attributes of a Vessel 				
@@ -71,6 +73,8 @@ type Vessel struct{							// Attributes of a Vessel
 	OwnerCountry string `json:"ownerCountry"`
 	VesselClass string `json:"vesselClass"`
 	BerthBookingStatus string `json:"berthBookingStatus"`
+	PreferredBerth string `json:"preferredBerth"`
+	AllocatedBerth string `json:"allocatedBerth"`
 }
 
 // ============================================================================================================================
