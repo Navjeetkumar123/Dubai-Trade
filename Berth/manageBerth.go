@@ -460,7 +460,7 @@ func (t *ManageBerth) get_AllBerth(stub shim.ChaincodeStubInterface, args []stri
 // ============================================================================================================================
 func (t *ManageBerth) delete_berth(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	if len(args) != 1 {
-		return nil, errors.New("Incorrect number of arguments. Expecting 1")
+		return nil, errors.New("Incorrect number of arguments. Expecting 1") 
 	}
 	// set berthID
 	vesselID := args[0]
