@@ -12,7 +12,8 @@ with the License.  You may obtain a copy of the License at
 Unless required by applicable law or agreed to in writing,
 software distributed under the License is distributed on an
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
+KIND, either ex
+ss or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 */
@@ -51,8 +52,7 @@ type Berth struct{							// Attributes of a Berth
 	PortOfRegisteration string `json:"portOfRegisteration"`
 	OwnerName string `json:"ownerName"`
 	OwnerPhoneNumber string `json:"ownerPhoneNumber"`
-	PreferredBerth string `json:"preferredBerth"`
-	AllocatedBerth string `json:"allocatedBerth"`
+	
 }
 
 type Vessel struct{							// Attributes of a Vessel 				
@@ -73,8 +73,7 @@ type Vessel struct{							// Attributes of a Vessel
 	OwnerCountry string `json:"ownerCountry"`
 	VesselClass string `json:"vesselClass"`
 	BerthBookingStatus string `json:"berthBookingStatus"`
-	PreferredBerth string `json:"preferredBerth"`
-	AllocatedBerth string `json:"allocatedBerth"`
+	
 }
 
 // ============================================================================================================================
