@@ -39,7 +39,6 @@ type Berth struct{							// Attributes of a Berth
 	VesselName string `json:"vesselName"`					
 	VesselType string `json:"vesselType"`
 	VesselClass string `json:"vesselClass"`
-	ShippingLine string `json:"shippingLine"`
 	AgentRefNumber string `json:"agentRefNumber"`
 	ArrivalPort string `json:"arrivalPort"`
 	InboundVoyageNo string `json:"inboundVoyageNo"`
