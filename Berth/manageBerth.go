@@ -502,7 +502,7 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 	var jsonResp string
 	var err error
 	fmt.Println("start update_berth")
-	if len(args) != 21 {
+	if len(args) != 20 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 15.")
 	}
 	// set vesselID
@@ -522,24 +522,23 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 		res.VesselName = args[1]
 		res.VesselType = args[2]
 		res.VesselClass = args[3]
-		res.ShippingLine = args[4]
-		res.AgentRefNumber = args[5]
-		res.ArrivalPort = args[6]
-		res.InboundVoyageNo = args[7]
-		res.OutboundVoyageNo = args[8]
-		res.ArriveFrom = args[9]
-		res.Terminal = args[10]
-		res.Remarks = args[11]
+		res.AgentRefNumber = args[4]
+		res.ArrivalPort = args[5]
+		res.InboundVoyageNo = args[6]
+		res.OutboundVoyageNo = args[7]
+		res.ArriveFrom = args[8]
+		res.Terminal = args[9]
+		res.Remarks = args[10]
 		res.BerthBookingStatus = "New"
-		res.RotationNumber = args[12]
-		res.TOID = args[13]
-		res.ApproverID = args[14]
-		res.MMSInumber = args[15]
-		res.PortOfRegisteration = args[16]
-		res.OwnerName = args[17]
-		res.OwnerPhoneNumber = args[18]
-		res.PreferredBerth = args[19]
-		res.AllocatedBerth = args[20]
+		res.RotationNumber = args[11]
+		res.TOID = args[12]
+		res.ApproverID = args[13]
+		res.MMSInumber = args[14]
+		res.PortOfRegisteration = args[15]
+		res.OwnerName = args[16]
+		res.OwnerPhoneNumber = args[17]
+		res.PreferredBerth = args[18]
+		res.AllocatedBerth = args[19]
 	}
 	
 	//build the Berth json string manually
@@ -548,7 +547,6 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 		`"vesselName": "` + res.VesselName + `" , `+
 		`"vesselType": "` + res.VesselType + `" , `+
 		`"vesselClass": "` + res.VesselClass + `" , `+
-		`"shippingLine": "` + res.ShippingLine + `" , `+ 
 		`"agentRefNumber": "` + res.AgentRefNumber + `" , `+ 
 		`"arrivalPort": "` + res.ArrivalPort + `" , `+ 
 		`"inboundVoyageNo": "` + res.InboundVoyageNo + `" , `+ 
@@ -578,7 +576,7 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 // ============================================================================================================================
 func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
-	if len(args) != 21 {
+	if len(args) != 20 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 15")
 	}
 	fmt.Println("start create_berth")
@@ -587,24 +585,23 @@ func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []stri
 	VesselName := args[1]
 	VesselType := args[2]
 	VesselClass := args[3]
-	ShippingLine := args[4]
-	AgentRefNumber := args[5]
-	ArrivalPort := args[6]
-	InboundVoyageNo := args[7]
-	OutboundVoyageNo := args[8]
-	ArriveFrom := args[9]
-	Terminal := args[10]
-	Remarks := args[11]
+	AgentRefNumber := args[4]
+	ArrivalPort := args[5]
+	InboundVoyageNo := args[6]
+	OutboundVoyageNo := args[7]
+	ArriveFrom := args[8]
+	Terminal := args[9]
+	Remarks := args[10]
 	BerthBookingStatus := "New"
-	RotationNumber := args[12]
-	TOID := args[13]
-	ApproverID := args[14]
-	MMSInumber := args[15]
-	PortOfRegisteration := args[16]
-	OwnerName := args[17]
-	OwnerPhoneNumber := args[18]
-	PreferredBerth := args[19]
-	AllocatedBerth := args[20]
+	RotationNumber := args[11]
+	TOID := args[12]
+	ApproverID := args[13]
+	MMSInumber := args[14]
+	PortOfRegisteration := args[15]
+	OwnerName := args[16]
+	OwnerPhoneNumber := args[17]
+	PreferredBerth := args[18]
+	AllocatedBerth := args[19]
 	
 	berthAsBytes, err := stub.GetState(VesselID)
 	if err != nil {
@@ -627,8 +624,7 @@ func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []stri
 		`"vesselID": "` + VesselID + `" , `+
 		`"vesselName": "` + VesselName + `" , `+
 		`"vesselType": "` + VesselType + `" , `+
-		`"vesselClass": "` + VesselClass + `" , `+
-		`"shippingLine": "` + ShippingLine + `" , `+ 
+		`"vesselClass": "` + VesselClass + `" , `+ 
 		`"agentRefNumber": "` + AgentRefNumber + `" , `+ 
 		`"arrivalPort": "` + ArrivalPort + `" , `+ 
 		`"inboundVoyageNo": "` + InboundVoyageNo + `" , `+ 
@@ -716,8 +712,7 @@ func (t *ManageBerth) update_berth_allocationStatus(stub shim.ChaincodeStubInter
 		`"vesselID": "` + res.VesselID + `" , `+
 		`"vesselName": "` + res.VesselName + `" , `+
 		`"vesselType": "` + res.VesselType + `" , `+
-		`"vesselClass": "` + res.VesselClass + `" , `+
-		`"shippingLine": "` + res.ShippingLine + `" , `+ 
+		`"vesselClass": "` + res.VesselClass + `" , `+ 
 		`"agentRefNumber": "` + res.AgentRefNumber + `" , `+ 
 		`"arrivalPort": "` + res.ArrivalPort + `" , `+ 
 		`"inboundVoyageNo": "` + res.InboundVoyageNo + `" , `+ 
