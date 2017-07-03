@@ -561,9 +561,9 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 		`"mmsiNumber": "` + res.MMSInumber + `" , `+ 
 		`"portOfRegisteration": "` + res.PortOfRegisteration + `" , `+ 
 		`"ownerName": "` + res.OwnerName + `" , `+ 
-		`"ownerPhoneNumber": "` + res.OwnerPhoneNumber + `" , `+ 
-		`"preferredBerth": "` + res.PreferredBerth + `" , `+ 
-		`"preferredBerth": "` + res.PreferredBerth + `" `+ 
+		`"ownerPhoneNumber": "` + res.OwnerPhoneNumber + `" , `+  
+		`"preferredBerth": "` + res.PreferredBerth + `" ,`+ 
+		`"allocatedBerth": "` + res.AllocatedBerth + `" `+
 		`}`
 	err = stub.PutState(vesselID, []byte(berthDetails))									//store Berth with id as key
 	if err != nil {
@@ -576,7 +576,7 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 // ============================================================================================================================
 func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
-	if len(args) != 20 {
+	if len(args) != 19 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 15")
 	}
 	fmt.Println("start create_berth")
