@@ -639,7 +639,6 @@ func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []stri
 		`"portOfRegisteration": "` + PortOfRegisteration + `" , `+ 
 		`"ownerName": "` + OwnerName + `" , `+ 
 		`"preferredBerth": "` + PreferredBerth + `" , `+
-		`"allocatedBerth": "` + AllocatedBerth + `" , `+
 		`"ownerPhoneNumber": "` + OwnerPhoneNumber + `" , `+ 
 		`"preferredBerth": "` + PreferredBerth + `" `+ 
 		`}`
