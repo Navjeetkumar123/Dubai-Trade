@@ -563,7 +563,7 @@ func (t *ManageBerth) update_berth(stub shim.ChaincodeStubInterface, args []stri
 		`"ownerName": "` + res.OwnerName + `" , `+ 
 		`"ownerPhoneNumber": "` + res.OwnerPhoneNumber + `" , `+ 
 		`"preferredBerth": "` + res.PreferredBerth + `" , `+ 
-		`"allocatedBerth": "` + res.AllocatedBerth + `" `+ 
+		`"preferredBerth": "` + res.PreferredBerth + `" `+ 
 		`}`
 	err = stub.PutState(vesselID, []byte(berthDetails))									//store Berth with id as key
 	if err != nil {
@@ -601,7 +601,6 @@ func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []stri
 	OwnerName := args[16]
 	OwnerPhoneNumber := args[17]
 	PreferredBerth := args[18]
-	AllocatedBerth := args[19]
 	
 	berthAsBytes, err := stub.GetState(VesselID)
 	if err != nil {
@@ -642,8 +641,7 @@ func (t *ManageBerth) create_berth(stub shim.ChaincodeStubInterface, args []stri
 		`"preferredBerth": "` + PreferredBerth + `" , `+
 		`"allocatedBerth": "` + AllocatedBerth + `" , `+
 		`"ownerPhoneNumber": "` + OwnerPhoneNumber + `" , `+ 
-		`"preferredBerth": "` + PreferredBerth + `" , `+ 
-		`"allocatedBerth": "` + AllocatedBerth + `" `+ 
+		`"preferredBerth": "` + PreferredBerth + `" `+ 
 		`}`
 
 		//fmt.Println("berthDetails: " + berthDetails)
